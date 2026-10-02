@@ -1,0 +1,1391 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arpitha V Khanapur | Robotics & AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+:root {
+    --bg: #090b17;
+    --surface: #14182b;
+    --surface2: #1b2038;
+    --purple: #a78bfa;
+    --pink: #f0abfc;
+    --cyan: #67e8f9;
+    --text: #f4f3ff;
+    --muted: #a3a8c2;
+    --border: rgba(255,255,255,0.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #6938ef;
+    filter: blur(200px);
+    opacity: 0.13;
+    top: -150px;
+    left: -150px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    background: #0891b2;
+    filter: blur(200px);
+    opacity: 0.09;
+    bottom: -200px;
+    right: -100px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+::selection {
+    background: var(--purple);
+    color: #090b17;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,11,23,0.82);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 0;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--purple);
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--cyan);
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.hero-content {
+    max-width: 780px;
+    position: relative;
+    z-index: 2;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(167,139,250,0.3);
+    background: rgba(167,139,250,0.08);
+    padding: 8px 15px;
+    border-radius: 50px;
+    color: #d8ccff;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #4ade80;
+    animation: pulse 2s infinite;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 9vw, 100px);
+    line-height: 1.04;
+    letter-spacing: -5px;
+    font-weight: 700;
+}
+
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        #c4b5fd,
+        #f0abfc,
+        #67e8f9
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero h2 {
+    font-size: clamp(20px, 3vw, 28px);
+    color: #c4c7dc;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.hero p {
+    max-width: 650px;
+    color: var(--muted);
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 23px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(120deg, #a78bfa, #67e8f9);
+    color: #090b17;
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(167,139,250,0.3);
+}
+
+.btn-secondary {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: white;
+}
+
+.btn-secondary:hover {
+    border-color: var(--purple);
+    transform: translateY(-4px);
+}
+
+.hero-note {
+    position: absolute;
+    right: 5%;
+    bottom: 15%;
+    font-family: 'DM Mono', monospace;
+    color: var(--purple);
+    font-size: 13px;
+    transform: rotate(-8deg);
+    opacity: 0.8;
+}
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section {
+    padding: 90px 0;
+    scroll-margin-top: 70px;
+}
+
+.section-label {
+    font-family: 'DM Mono', monospace;
+    color: var(--cyan);
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: clamp(32px, 5vw, 48px);
+    letter-spacing: -2px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.section-title span {
+    color: var(--purple);
+}
+
+.section-description {
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 650px;
+}
+
+/* =========================
+   ABOUT / BENTO GRID
+========================= */
+
+.bento {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 18px;
+}
+
+.bento-card {
+    background: linear-gradient(145deg, #171c31, #111526);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(167,139,250,0.5);
+}
+
+.bento-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.bento-card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.about-main {
+    grid-row: span 2;
+    min-height: 300px;
+}
+
+.about-main p {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--cyan);
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.fun-card {
+    background: linear-gradient(135deg, #35245b, #18233f);
+}
+
+.fun-card h3 {
+    color: #e9d5ff;
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    background: var(--surface2);
+    transform: translateY(-5px);
+    border-color: var(--cyan);
+}
+
+.skill-icon {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(167,139,250,0.4);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cyan);
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    margin-bottom: 18px;
+}
+
+.skill-card h3 {
+    color: #e0d7ff;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.skill-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.skill-tags span {
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: rgba(167,139,250,0.1);
+    color: #d6c8ff;
+    font-size: 11px;
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--purple);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.project-visual {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #28204b, #102d42);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-visual::before {
+    content: "";
+    width: 130px;
+    height: 130px;
+    border: 1px solid rgba(103,232,249,0.5);
+    border-radius: 50%;
+    position: absolute;
+    box-shadow:
+        0 0 30px rgba(103,232,249,0.1),
+        inset 0 0 30px rgba(167,139,250,0.1);
+    animation: rotate 12s linear infinite;
+}
+
+.project-visual::after {
+    content: "";
+    width: 80px;
+    height: 80px;
+    border: 1px dashed rgba(240,171,252,0.6);
+    border-radius: 50%;
+    position: absolute;
+    animation: rotate 8s linear infinite reverse;
+}
+
+.project-visual span {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--cyan);
+    z-index: 2;
+    letter-spacing: 2px;
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-index {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    margin-bottom: 10px;
+}
+
+.project-content h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.project-content p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 18px;
+}
+
+.project-tags span {
+    font-size: 11px;
+    color: #c4b5fd;
+    background: #25213e;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+/* =========================
+   EDUCATION
+========================= */
+
+.education-list {
+    display: grid;
+    gap: 16px;
+}
+
+.education-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 25px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.education-card:hover {
+    border-color: var(--cyan);
+    transform: translateX(5px);
+}
+
+.edu-icon {
+    min-width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    background: #272044;
+    color: var(--cyan);
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+}
+
+.edu-details h3 {
+    font-size: 18px;
+}
+
+.edu-details p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.edu-year {
+    margin-left: auto;
+    color: var(--cyan);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* =========================
+   ACHIEVEMENTS
+========================= */
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.achievement {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 14px;
+    transition: 0.3s;
+}
+
+.achievement:hover {
+    border-color: var(--pink);
+}
+
+.achievement-mark {
+    color: var(--purple);
+    font-size: 20px;
+    font-family: 'DM Mono', monospace;
+}
+
+.achievement p {
+    font-size: 14px;
+    color: #d3d5e5;
+}
+
+/* =========================
+   CERTIFICATIONS
+========================= */
+
+.cert-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.cert {
+    background: #171c31;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 17px;
+    color: #d5d1eb;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.cert:hover {
+    border-color: var(--purple);
+    color: white;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-card {
+    background: linear-gradient(130deg, #252044, #112d40);
+    border: 1px solid rgba(167,139,250,0.25);
+    border-radius: 24px;
+    padding: 55px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card h2 {
+    font-size: clamp(32px, 6vw, 55px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.contact-card h2 span {
+    color: var(--cyan);
+}
+
+.contact-card p {
+    color: #b7bed3;
+    max-width: 550px;
+    margin: auto;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 25px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+footer span {
+    color: var(--pink);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .bento {
+        grid-template-columns: 1fr;
+    }
+
+    .about-main {
+        grid-row: auto;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-note {
+        display: none;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .hero {
+        min-height: 75vh;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .achievement-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .education-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .edu-year {
+        margin-left: 77px;
+        width: 100%;
+    }
+
+    section {
+        padding: 65px 0;
+    }
+
+    .contact-card {
+        padding: 35px 20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="container navbar">
+
+        <a href="#" class="logo">arpitha<span>.</span></a>
+
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero container">
+
+    <div class="hero-content">
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Currently building my next big thing
+        </div>
+
+        <p class="section-label">HELLO WORLD, I'M</p>
+
+        <h1>
+            Arpitha<br>
+            <span class="gradient-text">V Khanapur.</span>
+        </h1>
+
+        <h2>Robotics & AI student. Future engineer. Professional curious mind.</h2>
+
+        <p>
+            I build things that move, think, and solve real-world
+            problems. From autonomous robots to intelligent systems,
+            I'm here to turn "what if?" into "it's working!"
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+                Explore my work ↗
+            </a>
+
+            <a href="#contact" class="btn btn-secondary">
+                Let's connect
+            </a>
+        </div>
+
+    </div>
+
+    <div class="hero-note">
+        // currently in my learning era
+    </div>
+
+</header>
+
+
+<main>
+
+<!-- ABOUT -->
+
+<section id="about">
+<div class="container">
+
+    <p class="section-label">01 / THE HUMAN BEHIND THE CODE</p>
+
+    <h2 class="section-title">
+        A little bit about <span>me.</span>
+    </h2>
+
+    <p class="section-description">
+        Engineer by education, creator by curiosity.
+    </p>
+
+    <div class="bento">
+
+        <div class="bento-card about-main">
+
+            <h3>Hey, that's me.</h3>
+
+            <p>
+                I'm Arpitha, a final-year B.E. student in Robotics
+                and Artificial Intelligence at Jawaharlal Nehru
+                New College of Engineering, Shivamogga.
+            </p>
+
+            <p>
+                I love exploring the space where software meets
+                the physical world — whether that's building
+                autonomous robots, experimenting with computer
+                vision, or finding smarter ways to automate things.
+            </p>
+
+            <p>
+                Currently learning, building, breaking things,
+                fixing them, and repeating the cycle. Because
+                that's how the magic happens.
+            </p>
+
+        </div>
+
+        <div class="bento-card">
+            <div class="stat-number">AI × Robotics</div>
+            <p>My favourite intersection of technology.</p>
+        </div>
+
+        <div class="bento-card fun-card">
+            <h3>My current personality</h3>
+            <p>
+                30% debugging<br>
+                30% learning something new<br>
+                20% coffee-powered ideas<br>
+                20% "wait, I can build that!"
+            </p>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+<div class="container">
+
+    <p class="section-label">02 / MY TECH STACK</p>
+
+    <h2 class="section-title">
+        Things I <span>work with.</span>
+    </h2>
+
+    <p class="section-description">
+        My current toolkit. Always evolving, always upgrading.
+    </p>
+
+    <div class="skills-grid">
+
+        <div class="skill-card">
+            <div class="skill-icon">&lt;/&gt;</div>
+            <h3>Programming</h3>
+            <p>Languages I use to bring ideas to life.</p>
+            <div class="skill-tags">
+                <span>Python</span>
+                <span>C++</span>
+                <span>C</span>
+                <span>Java</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">R2</div>
+            <h3>Robotics</h3>
+            <p>Making machines understand and interact with the world.</p>
+            <div class="skill-tags">
+                <span>ROS1</span>
+                <span>ROS2</span>
+                <span>Gazebo</span>
+                <span>RViz</span>
+                <span>LiDAR</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">AI</div>
+            <h3>AI & Machine Learning</h3>
+            <p>Building systems that learn from data.</p>
+            <div class="skill-tags">
+                <span>Machine Learning</span>
+                <span>CNN</span>
+                <span>Computer Vision</span>
+                <span>DIP</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">CAD</div>
+            <h3>Engineering Tools</h3>
+            <p>My digital engineering workbench.</p>
+            <div class="skill-tags">
+                <span>Linux</span>
+                <span>Ubuntu</span>
+                <span>MATLAB</span>
+                <span>ANSYS</span>
+                <span>SolidWorks</span>
+                <span>Arduino IDE</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">SYS</div>
+            <h3>Core Concepts</h3>
+            <p>The fundamentals behind my projects.</p>
+            <div class="skill-tags">
+                <span>Data Structures</span>
+                <span>Embedded Systems</span>
+                <span>Sensor Integration</span>
+                <span>PLC</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">WEB</div>
+            <h3>Currently Exploring</h3>
+            <p>New skills I'm adding to my developer journey.</p>
+            <div class="skill-tags">
+                <span>Web Development</span>
+                <span>UI Design</span>
+                <span>Creative Coding</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+<div class="container">
+
+    <p class="section-label">03 / THINGS I'VE BUILT</p>
+
+    <h2 class="section-title">
+        My little corner of <span>innovation.</span>
+    </h2>
+
+    <p class="section-description">
+        Ideas, experiments, and engineering projects I'm proud of.
+    </p>
+
+    <div class="projects-grid">
+
+        <div class="project-card">
+
+            <div class="project-visual">
+                <span>ROBOT_01</span>
+            </div>
+
+            <div class="project-content">
+
+                <p class="project-index">PROJECT 01 — ROBOTICS</p>
+
+                <h3>Autonomous Cleaning Robot</h3>
+
+                <p>
+                    Developing an autonomous cleaning robot
+                    integrating ROS, computer vision, and
+                    CNN-based waste classification. Creating
+                    a custom dataset for vision-based detection
+                    and classification.
+                </p>
+
+                <div class="project-tags">
+                    <span>ROS</span>
+                    <span>CNN</span>
+                    <span>Computer Vision</span>
+                    <span>Python</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="project-card">
+
+            <div class="project-visual">
+                <span>SMART_AI</span>
+            </div>
+
+            <div class="project-content">
+
+                <p class="project-index">PROJECT 02 — AUTOMOTIVE AI</p>
+
+                <h3>Smart Retrofit</h3>
+
+                <p>
+                    Proposed an AI/ML-based system to analyze
+                    real-time engine signals and predict engine
+                    load and driving modes, aiming to improve
+                    fuel efficiency without major hardware
+                    modifications.
+                </p>
+
+                <div class="project-tags">
+                    <span>AI/ML</span>
+                    <span>Predictive Analysis</span>
+                    <span>Automotive</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="project-card">
+
+            <div class="project-visual">
+                <span>AUTO_SYS</span>
+            </div>
+
+            <div class="project-content">
+
+                <p class="project-index">PROJECT 03 — AUTOMATION</p>
+
+                <h3>Liquid Jaggery Automation</h3>
+
+                <p>
+                    Designed an automation concept for liquid
+                    jaggery production using temperature
+                    monitoring and process control to improve
+                    consistency and reduce manual intervention.
+                </p>
+
+                <div class="project-tags">
+                    <span>Automation</span>
+                    <span>Sensors</span>
+                    <span>Process Control</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="project-card">
+
+            <div class="project-visual">
+                <span>ML_LAB</span>
+            </div>
+
+            <div class="project-content">
+
+                <p class="project-index">PROJECT 04 — MACHINE LEARNING</p>
+
+                <h3>Machine Learning Applications</h3>
+
+                <p>
+                    Worked on multiple ML projects including
+                    water encroachment detection, customer churn
+                    prediction, healthcare chatbot, handwritten
+                    digit recognition, weather prediction,
+                    and movie recommendation.
+                </p>
+
+                <div class="project-tags">
+                    <span>Python</span>
+                    <span>Machine Learning</span>
+                    <span>Data Science</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- EDUCATION ONLY -->
+
+<section id="education">
+<div class="container">
+
+    <p class="section-label">04 / THE ACADEMIC JOURNEY</p>
+
+    <h2 class="section-title">
+        My <span>education.</span>
+    </h2>
+
+    <p class="section-description">
+        The journey that got me here.
+    </p>
+
+    <div class="education-list">
+
+        <div class="education-card">
+
+            <div class="edu-icon">01</div>
+
+            <div class="edu-details">
+                <h3>B.E. — Robotics and Artificial Intelligence</h3>
+                <p>Jawaharlal Nehru New College of Engineering</p>
+                <p>Shivamogga, Karnataka</p>
+                <p>Currently pursuing</p>
+            </div>
+
+            <div class="edu-year">2023–2027</div>
+
+        </div>
+
+
+        <div class="education-card">
+
+            <div class="edu-icon">02</div>
+
+            <div class="edu-details">
+                <h3>Pre-University Education</h3>
+                <p>Deeksha Malnad PU College</p>
+                <p>Shivamogga, Karnataka</p>
+                <p>82%</p>
+            </div>
+
+            <div class="edu-year">2022</div>
+
+        </div>
+
+
+        <div class="education-card">
+
+            <div class="edu-icon">03</div>
+
+            <div class="edu-details">
+                <h3>High School</h3>
+                <p>Adhichunchangiri Shikshana Trust High School</p>
+                <p>Shivamogga, Karnataka</p>
+                <p>87.52%</p>
+            </div>
+
+            <div class="edu-year">2020</div>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- ACHIEVEMENTS -->
+
+<section id="achievements">
+<div class="container">
+
+    <p class="section-label">05 / LITTLE WINS, BIG MEMORIES</p>
+
+    <h2 class="section-title">
+        The <span>achievement</span> wall.
+    </h2>
+
+    <p class="section-description">
+        Moments that made the hard work worth it.
+    </p>
+
+    <div class="achievement-grid">
+
+        <div class="achievement">
+            <div class="achievement-mark">01</div>
+            <p>Won a quiz in Super Computers conducted by IISc Bangalore.</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievement-mark">02</div>
+            <p>Secured 3rd Prize in the ML Gauntlet at TECHZONE college fest.</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievement-mark">03</div>
+            <p>Reached the finale of the National Level Physical AI Robothon.</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievement-mark">04</div>
+            <p>Secured 1st Prize in a department-level poster presentation.</p>
+        </div>
+
+        <div class="achievement">
+            <div class="achievement-mark">05</div>
+            <p>Completed the L&T Electric Vehicle course with O Grade.</p>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- CERTIFICATIONS -->
+
+<section id="certifications">
+<div class="container">
+
+    <p class="section-label">06 / PROOF OF LEARNING</p>
+
+    <h2 class="section-title">
+        Certifications & <span>credentials.</span>
+    </h2>
+
+    <p class="section-description">
+        Every certificate represents another step forward.
+    </p>
+
+    <div class="cert-list">
+
+        <div class="cert">NEWRRO TECH LLP — ROS Certification</div>
+
+        <div class="cert">L&T Edutech — Electric Vehicle Dynamics</div>
+
+        <div class="cert">L&T Edutech — Fundamentals of Electric and Hybrid Electric Vehicle Technology</div>
+
+        <div class="cert">My Equation — ROBO AI</div>
+
+        <div class="cert">C, C++, Core Java & Python Programming</div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+<div class="container">
+
+    <div class="contact-card">
+
+        <p class="section-label">07 / YOUR MOVE</p>
+
+        <h2>
+            Got an idea?<br>
+            <span>Let's build it.</span>
+        </h2>
+
+        <p>
+            Whether it's a cool project, an opportunity,
+            or just a conversation about technology —
+            my inbox is open.
+        </p>
+
+        <div class="contact-links">
+
+            <a class="btn btn-primary"
+               href="mailto:arpithavkhanapur1226@gmail.com">
+                Say Hello ↗
+            </a>
+
+            <a class="btn btn-secondary"
+               href="https://github.com/arpithavkhanapur1226-collab"
+               target="_blank">
+                GitHub
+            </a>
+
+            <a class="btn btn-secondary"
+               href="https://www.linkedin.com/in/arpitha-v-khanapur-7865352b7"
+               target="_blank">
+                LinkedIn
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+</main>
+
+
+<footer>
+    <div class="container">
+        Made with curiosity, caffeine & a little bit of chaos.
+        <br>
+        © 2026 Arpitha V Khanapur. All rights reserved.
+        <br>
+        <span>Keep building. Keep becoming.</span>
+    </div>
+</footer>
+
+</body>
+</html>
